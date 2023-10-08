@@ -1,0 +1,11 @@
+{
+  "name": "simple-java-maven-app",
+  "version": "1.0.0",
+  "description": "This repository is for the\r [Build a Java app with Maven](https://jenkins.io/doc/tutorials/build-a-java-app-with-maven/)\r tutorial in the [Jenkins User Documentation](https://jenkins.io/doc/).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
