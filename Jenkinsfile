@@ -1,17 +1,22 @@
-
-node {
-    stage('Build') {
-        docker.image('node:16-buster-slim').inside('-p 3000:3000'){
-            checkout scm
-            sh 'npm install'
+pipeline {
+    agent {
+        docker {
+            image 'node:16-buster-slim'
+            args '-p 3000:3000'
         }
     }
-    stage('Test') {
-        steps{
-        docker.image('node:16-buster-slim').inside('-p 3000:3000'){
-           sh "chmod +x -R ${env.WORKSPACE}"
-           sh 'AppTest.java'
-         }
+    stages {
+        stage('Build') {
+            steps {
+                checkout scm
+                sh 'npm install'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh "chmod +x -R ${env.WORKSPACE}"
+                sh 'AppTest.java'
+            }
         }
     }
 }
