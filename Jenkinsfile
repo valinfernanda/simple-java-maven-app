@@ -10,6 +10,5 @@ node {
         steps {
             sh './jenkins/scripts/test.sh'
             }
-        }
-    
+        }  
 }
