@@ -4,6 +4,11 @@ node {
             checkout scm
             sh 'npm install'
         }
+        stage('Test') {
+        steps {
+            sh './jenkins/scripts/test.sh'
+        }
+    }
     }
 }
 
