@@ -1,21 +1,24 @@
 pipeline {
     agent {
         docker {
-            image 'node:16-buster-slim'
-            args '-p 3000:3000'
+            image 'maven:3.9.0'
+            args '-v /root/.m2:/root/.m2'
         }
     }
     stages {
         stage('Build') {
             steps {
-                checkout scm
-                sh 'npm install'
+                sh 'mvn -B -DskipTests clean package'
             }
         }
         stage('Test') {
             steps {
-                sh "chmod +x -R ${env.WORKSPACE}"
-                sh './AppTest.java'
+                sh 'mvn test'
+            }
+            post {
+                always {
+                    junit 'target/surefire-reports/*.xml'
+                }
             }
         }
     }
